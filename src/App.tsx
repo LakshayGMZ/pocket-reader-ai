@@ -408,6 +408,10 @@ function App() {
               <ScanSearch size={14} />
               Automatic File Scanning
             </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-pink-700 bg-pink-900/40 px-3 py-1 text-xs text-pink-100">
+              <MessageSquare size={14} />
+              Multilingual Voice Output
+            </span>
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-stone-50 md:text-4xl">
             Filesystem Document Scanner
