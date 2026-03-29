@@ -359,10 +359,22 @@ function App() {
     <div className="min-h-screen bg-stone-950 text-stone-100">
       <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
         <header className="mb-8 rounded-3xl border border-stone-800 bg-stone-900/70 p-6 md:p-8">
-          <p className="mb-2 inline-flex items-center gap-2 rounded-full border border-stone-700 px-3 py-1 text-xs tracking-wide text-stone-300">
-            <ShieldCheck size={14} />
-            Private On-Device Document AI
-          </p>
+          <div className="mb-3 flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-700 bg-emerald-900/40 px-3 py-1 text-xs text-emerald-100">
+              <ShieldCheck size={14} />
+              Local AI Inference
+            </span>
+
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-700 bg-blue-900/40 px-3 py-1 text-xs text-blue-100">
+              <FolderOpen size={14} />
+              Easy Uploading
+            </span>
+
+            <span className="inline-flex items-center gap-2 rounded-full border border-purple-700 bg-purple-900/40 px-3 py-1 text-xs text-purple-100">
+              <ScanSearch size={14} />
+              Automatic File Scanning
+            </span>
+          </div>
           <h1 className="text-3xl font-semibold tracking-tight text-stone-50 md:text-4xl">
             Filesystem Document Scanner
           </h1>
