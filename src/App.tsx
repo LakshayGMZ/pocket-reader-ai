@@ -326,13 +326,24 @@ function App() {
 
   async function speakText(text: string) {
     if (!("speechSynthesis" in window)) {
-      setError("Speech synthesis not supported in this browser.");
+      setError("Speech synthesis not supported.");
       return;
     }
-
     speechSynthesis.cancel();
 
-    const voices = await getVoices();
+    const voices = await new Promise<SpeechSynthesisVoice[]>((resolve) => {
+      const v = speechSynthesis.getVoices();
+      if (v.length) {
+        resolve(v);
+        return;
+      }
+      speechSynthesis.addEventListener(
+        "voiceschanged",
+        () => resolve(speechSynthesis.getVoices()),
+        { once: true },
+      );
+    });
+
     const exact = voices.find((v) => v.lang === voiceLang);
     const fallback = voices.find((v) =>
       v.lang.startsWith(voiceLang.split("-")[0]),
