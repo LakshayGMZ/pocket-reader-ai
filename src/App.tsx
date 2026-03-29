@@ -6,6 +6,7 @@ import {
   LoaderCircle,
   MessageSquare,
   ScanSearch,
+  Volume2,
   ShieldCheck,
 } from "lucide-react";
 import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
