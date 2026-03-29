@@ -308,23 +308,39 @@ function App() {
     }
   }
 
-  function speakText(text: string) {
+  function getVoices(): Promise<SpeechSynthesisVoice[]> {
+    return new Promise((resolve) => {
+      const voices = speechSynthesis.getVoices();
+      if (voices.length) {
+        resolve(voices);
+        return;
+      }
+      speechSynthesis.addEventListener(
+        "voiceschanged",
+        () => resolve(speechSynthesis.getVoices()),
+        { once: true },
+      );
+    });
+  }
+
+  async function speakText(text: string) {
     if (!("speechSynthesis" in window)) {
       setError("Speech synthesis not supported in this browser.");
       return;
     }
 
+    speechSynthesis.cancel();
+
+    const voices = await getVoices();
+    const exact = voices.find((v) => v.lang === voiceLang);
+    const fallback = voices.find((v) =>
+      v.lang.startsWith(voiceLang.split("-")[0]),
+    );
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = voiceLang;
+    if (exact || fallback) utterance.voice = exact ?? fallback!;
 
-    // Optional: better voice selection
-    const voices = speechSynthesis.getVoices();
-    const selectedVoice = voices.find((v) => v.lang === voiceLang);
-    if (selectedVoice) {
-      utterance.voice = selectedVoice;
-    }
-
-    speechSynthesis.cancel(); // stop previous speech
     speechSynthesis.speak(utterance);
   }
 
