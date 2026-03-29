@@ -357,7 +357,7 @@ function App() {
       ].join("\n");
 
       const { stream } = await TextGeneration.generateStream(prompt, {
-        maxTokens: 260,
+        maxTokens: 120,
         temperature: 0.2,
         systemPrompt:
           "You are a precise document analyst. Keep answers concise and factual.",
