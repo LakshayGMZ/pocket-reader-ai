@@ -362,7 +362,7 @@ function App() {
           <div className="mb-3 flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-700 bg-emerald-900/40 px-3 py-1 text-xs text-emerald-100">
               <ShieldCheck size={14} />
-              Local AI Inference
+              AI Inference
             </span>
 
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-700 bg-blue-900/40 px-3 py-1 text-xs text-blue-100">
