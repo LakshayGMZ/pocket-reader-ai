@@ -206,6 +206,7 @@ function App() {
   const [error, setError] = useState<string>("");
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [voiceLang, setVoiceLang] = useState("en-US");
 
   const indexedCount = docs.filter(
     (doc) => doc.scanState === "done" && doc.text.trim(),
