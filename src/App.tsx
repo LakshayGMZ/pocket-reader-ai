@@ -576,15 +576,48 @@ function App() {
                 {answer || "Your answer will appear here."}
               </p>
             </div>
+            <div className="mt-3 rounded-2xl border border-stone-800 overflow-hidden">
+              {/* Header */}
+              <div className="flex items-center justify-between px-4 py-3 bg-stone-900 border-b border-stone-800">
+                <div className="flex items-center gap-2 text-sm font-medium text-stone-300">
+                  <Volume2 size={14} />
+                  Read aloud
+                </div>
+                <span className="text-xs px-2 py-0.5 rounded-full border border-stone-700 text-stone-400 bg-stone-950">
+                  {voiceLang}
+                </span>
+              </div>
+
+              {/* Controls */}
+              <div className="flex gap-3 items-center flex-wrap px-4 py-3 bg-stone-900/60">
+                <select
+                  value={voiceLang}
+                  onChange={(e) => setVoiceLang(e.target.value)}
+                  className="flex-1 min-w-36 rounded-xl border border-stone-700 bg-stone-950/70 px-3 py-2 text-sm text-stone-100"
+                >
+                  <option value="en-US">🇺🇸 English (US)</option>
+                  <option value="en-GB">🇬🇧 English (UK)</option>
+                  <option value="hi-IN">🇮🇳 Hindi</option>
+                  <option value="es-ES">🇪🇸 Spanish</option>
+                  <option value="fr-FR">🇫🇷 French</option>
+                  <option value="de-DE">🇩🇪 German</option>
+                  <option value="ja-JP">🇯🇵 Japanese</option>
+                  <option value="zh-CN">🇨🇳 Chinese</option>
+                  <option value="ar-SA">🇸🇦 Arabic</option>
+                  <option value="pt-BR">🇧🇷 Portuguese (BR)</option>
+                </select>
+
+                <button
+                  type="button"
+                  onClick={() => speakText(answer)}
+                  disabled={!answer}
+                  className="inline-flex items-center gap-2 rounded-xl border border-pink-700 bg-pink-900/40 px-4 py-2 text-sm text-pink-100 disabled:opacity-50"
+                >
+                  <Volume2 size={14} /> Speak
+                </button>
+              </div>
+            </div>
           </section>
-          <button
-            type="button"
-            onClick={() => speakText(answer)}
-            disabled={!answer}
-            className="mt-3 inline-flex items-center gap-2 rounded-xl border border-pink-700 bg-pink-900/40 px-4 py-2 text-sm text-pink-100 disabled:opacity-50"
-          >
-            🔊 Speak Answer
-          </button>
         </main>
 
         {error ? (
