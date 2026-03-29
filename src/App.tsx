@@ -561,6 +561,14 @@ function App() {
               </p>
             </div>
           </section>
+          <button
+            type="button"
+            onClick={() => speakText(answer)}
+            disabled={!answer}
+            className="mt-3 inline-flex items-center gap-2 rounded-xl border border-pink-700 bg-pink-900/40 px-4 py-2 text-sm text-pink-100 disabled:opacity-50"
+          >
+            🔊 Speak Answer
+          </button>
         </main>
 
         {error ? (
