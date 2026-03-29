@@ -308,6 +308,26 @@ function App() {
     }
   }
 
+  function speakText(text: string) {
+    if (!("speechSynthesis" in window)) {
+      setError("Speech synthesis not supported in this browser.");
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = voiceLang;
+
+    // Optional: better voice selection
+    const voices = speechSynthesis.getVoices();
+    const selectedVoice = voices.find((v) => v.lang === voiceLang);
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+
+    speechSynthesis.cancel(); // stop previous speech
+    speechSynthesis.speak(utterance);
+  }
+
   async function askQuestion() {
     if (!question.trim() || askBusy) return;
     const scannedDocs = docs.filter(
