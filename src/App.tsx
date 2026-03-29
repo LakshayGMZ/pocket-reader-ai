@@ -538,19 +538,6 @@ function App() {
               rows={4}
               className="mb-4 w-full resize-y rounded-2xl border border-stone-700 bg-stone-950/70 px-4 py-3 text-sm text-stone-100 outline-none"
             />
-            <select
-              value={voiceLang}
-              onChange={(e) => setVoiceLang(e.target.value)}
-              className="mb-3 w-full rounded-xl border border-stone-700 bg-stone-950/70 px-3 py-2 text-sm text-stone-100"
-            >
-              <option value="en-US">English</option>
-              <option value="hi-IN">Hindi</option>
-              <option value="es-ES">Spanish</option>
-              <option value="fr-FR">French</option>
-              <option value="de-DE">German</option>
-              <option value="ja-JP">Japanese</option>
-            </select>
-
             <button
               type="button"
               onClick={askQuestion}
