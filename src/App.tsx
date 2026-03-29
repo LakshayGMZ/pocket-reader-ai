@@ -132,7 +132,7 @@ function buildContext(docs: IndexedDoc[], query: string) {
       })),
     )
     .sort((a, b) => b.score - a.score)
-    .slice(0, 6);
+    .slice(0, 3);
 
   return ranked
     .map((item, index) => `[Source ${index + 1}: ${item.label}]\n${item.chunk}`)
