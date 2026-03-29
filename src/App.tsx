@@ -97,7 +97,7 @@ function formatBytes(bytes: number) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function chunkText(input: string, maxChunkSize = 1400) {
+function chunkText(input: string, maxChunkSize = 600) {
   const clean = input.replace(/\s+/g, " ").trim();
   if (!clean) return [];
   const chunks: string[] = [];
