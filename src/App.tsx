@@ -309,21 +309,6 @@ function App() {
     }
   }
 
-  // function getVoices(): Promise<SpeechSynthesisVoice[]> {
-  //   return new Promise((resolve) => {
-  //     const voices = speechSynthesis.getVoices();
-  //     if (voices.length) {
-  //       resolve(voices);
-  //       return;
-  //     }
-  //     speechSynthesis.addEventListener(
-  //       "voiceschanged",
-  //       () => resolve(speechSynthesis.getVoices()),
-  //       { once: true },
-  //     );
-  //   });
-  // }
-
   async function speakText(text: string) {
     if (!("speechSynthesis" in window)) {
       setError("Speech synthesis not supported.");
