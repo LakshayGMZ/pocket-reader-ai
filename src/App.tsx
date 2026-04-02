@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Brain,
   FileText,
@@ -208,6 +208,10 @@ function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [voiceLang, setVoiceLang] = useState("en-US");
+  
+  useEffect(() => {
+    loadModel();
+  }, [])
 
   const indexedCount = docs.filter(
     (doc) => doc.scanState === "done" && doc.text.trim(),
@@ -234,6 +238,7 @@ function App() {
       const foundDocs = await collectDocs(handle);
       setDirName(handle.name);
       setDocs(foundDocs);
+      scanDirectoryFiles(foundDocs);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Directory selection failed.";
@@ -241,7 +246,7 @@ function App() {
     }
   }
 
-  async function scanDirectoryFiles() {
+  async function scanDirectoryFiles(docs: IndexedDoc[]) {
     if (!docs.length || scanBusy) return;
     setError("");
     setScanBusy(true);
@@ -443,35 +448,6 @@ function App() {
               {dirName ? `Selected: ${dirName}` : "No folder selected"}
             </div>
 
-            <div className="mb-5 flex gap-3">
-              <button
-                type="button"
-                onClick={scanDirectoryFiles}
-                disabled={!docs.length || scanBusy}
-                className="inline-flex items-center gap-2 rounded-xl border border-emerald-700 bg-emerald-900/40 px-4 py-2 text-sm text-emerald-100 disabled:opacity-50"
-              >
-                {scanBusy ? (
-                  <LoaderCircle size={16} className="animate-spin" />
-                ) : (
-                  <ScanSearch size={16} />
-                )}
-                Scan Files
-              </button>
-
-              <button
-                type="button"
-                onClick={loadModel}
-                disabled={sdkBusy}
-                className="inline-flex items-center gap-2 rounded-xl border border-indigo-700 bg-indigo-900/40 px-4 py-2 text-sm text-indigo-100 disabled:opacity-50"
-              >
-                {sdkBusy ? (
-                  <LoaderCircle size={16} className="animate-spin" />
-                ) : (
-                  <Brain size={16} />
-                )}
-                Load AI Model
-              </button>
-            </div>
 
             <div className="space-y-3">
               {docs.length === 0 ? (
